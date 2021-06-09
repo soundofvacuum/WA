@@ -1,0 +1,17 @@
+﻿@model MovieMark.Models.User
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*<h1>@Model.Profile.Name</h1>
+<ul>
+    <li><img src="@Model.Profile.PathtoAvatar"</li>
+    <li>@Model.Profile.Email</li>
+</ul>*@
+@if(Model.Role==1)
+{
+    <a asp-controller="Forms" asp-action="AddForm">AdminPanel</a>
+}
+<a asp-controller="Forms" asp-action="Logout">Logout</a>
+

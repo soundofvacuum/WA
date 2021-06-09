@@ -1,0 +1,103 @@
+﻿@model MovieMark.Models.DataModel.MoviesandActors
+@{
+    ViewData["Title"] = "AddForm";
+}
+@*@using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+    {*@
+<table>
+    <table>
+        <td>
+            <form method="post" action="~/Forms/AddMovie">
+                <table style="margin-left:12%;">
+                    <a style="font-size:20px;font-style:bold;">Добавить Фильм</a>
+                    <br />
+                    <tr>
+                        <td><p>Название Фильма: </p></td>
+                        <td><input type="text" name="Title" /> </td>
+                    </tr>
+                    <tr>
+                        <td><p>Дата выхода в прокат: </p></td>
+                        <td><input type="date" name="ReleaseDate" /> </td>
+                    </tr>
+                    <tr>
+                        <td><p>Режисёр:</p></td>
+                        <td><input type="text" name="Director" /> </td>
+                    </tr>
+                    <tr>
+                        <td><p>Описание:</p></td>
+                        <td><input type="text" name="Description" /> </td>
+                    </tr>
+                    <tr>
+                        <td><p>URL Постера:</p></td>
+                        <td><input type="text" name="PathToImg" /> </td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Добавить" /> </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+        <td>
+            <table style="margin-left:12%;">
+                <form method="post" action="~/Forms/AddÃctor">
+                    <a style="font-size:20px;font-style:bold;">Добавить Актёра</a>
+                    <br />
+                    <tr>
+                        <td><p>Имя Актёра: </p></td>
+                        <td><input type="text" name="Name" /> </td>
+                    </tr>
+                    <tr>
+                        <td><p>Дата рождения: </p></td>
+                        <td><input type="date" name="BornDate" /> </td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td><p>URL Фото:</p></td>
+                        <td><input type="text" name="PathToPhoto" /> </td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Добавить" /> </td>
+                        <td></td>
+                    </tr>
+                </form>
+            </table>
+        </td>
+        <table>
+            <a style="font-size:20px;font-style:bold;">Добавить Актёрский состав</a>
+            <tr>
+                <form method="post" action="~/Forms/AddStuff">
+                    <td>
+                        <select>
+                            @foreach (var i in Model.Movies.ToList())
+                            {
+                                <option name="MovieID" value="@i.Id" >@i.Title</option>
+                            }
+                        </select>
+                    </td>
+
+                    <td class="checkselect">
+
+                        @foreach (var x in Model.Actors.ToList())
+                        {
+                            <label><input type="checkbox" name="selectedActors[]" value="@x.Id" checked> @x.Name</label>
+                        }
+
+                    </td>
+                    <td>
+                        <input type="submit" value="Добавить" />
+                    </td>
+                    </form>
+            </tr>
+            
+        </table>
+        </tr>
+    </table>
+    <br />
+    <form>
+        <table style="margin-left:30%; margin-top:100px;">
+        </table>
+    </form>

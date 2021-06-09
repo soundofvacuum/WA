@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MovieMark.Models.Movie>
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Фильмы</h1>
+</div>
+<div>
+    Сортировать по:
+    <form method="post" action="~/Home/MovieView" >
+        <select name="field" onchange="this.form.submit();">
+            <option> </option>
+            <option value="Title">Названию</option>
+            <option value="Score">Популярности</option>
+            <option value="ReleaseDate">Дата Выхода в прокат</option>
+        </select>
+    </form>
+</div>
+@*@model IEnumerable<MovieMark.Models.Movie>
+    @{
+        ViewBag.Title = "Все Фильмы";
+    }*@
+<table>
+    <tr>
+        @foreach (var i in Model.ToList())
+        {
+
+            <td style="
+                width: 200px;
+                height: 350px;
+                border: 1px solid #f04713;
+                border-radius: 10px;
+                margin-left: 20px;
+                margin-top: 20px;
+                position: relative;
+                display: inline-block;
+                overflow: hidden;
+                vertical-align: top;
+               
+            ">
+                <p>@i.Title<br /></p>
+                <a href="#win[@i.Id]";><img class="poster" src="@i.PathToImg" width="200" height="250"  /></a>
+                Рейтинг: <div style="
+                    display: inline-block;
+                    padding: 2px 6px;
+                    font-weight: 700;
+                    color: #fff;
+                    border-radius: 4px;
+                    background: #727272;
+                ">
+                    @i.Score
+                </div>
+            </td>
+            <a href="#x" class="overlay" id="win[@i.Id]"></a>
+            <div class="popup">
+
+                <p style="margin-top: 30px; line-height: 15px; font-size: 11px; text-align: left;">
+                    <div class='lighted'>
+                        <div class='site-content' style="background-color: #fff">
+                            <div class="info-row-about">
+                                <h1 style="display:inline-block;">@i.Title</h1>
+                                <a style="display:inline-block; margin-left:20%;" asp-area="" asp-controller="Home" asp-action="MakeRate" asp-route-id="@i.Id" asp-route-MovieOrActor="true" asp-route-LikeOrDislike="true"><img src="~/lib/likev2.png" width="50" height="50" /></a>
+                                <a style="display:inline-block;" asp-area="" asp-controller="Home" asp-action="MakeRate"asp-route-id="@i.Id" asp-route-MovieOrActor="true" asp-route-LikeOrDislike="false"><img src="~/lib/dislikev2.png" width="50" height="50" /></a>
+                                <a style="display:inline-block;" asp-area="" asp-controller="Home" asp-action="CommentView" asp-route-id="@i.Id"><img src="~/lib/comment.png" width="50" height="50" /></a>
+
+                                <ul>
+                                    <li>Дата выхода в прокат: @i.ReleaseDate</li>
+                                    <li>
+                                        Рейтинг:<div style="display: inline-block;padding: 2px 6px;font-weight: 700;color: #fff;border-radius: 4px; background: #727272;">
+                                            @i.Score
+                                        </div>
+                                    </li>
+                                    <li>Режисёр: @i.Director</li>
+                                    <li>Описание: @i.Description</li>
+                                </ul>
+                            </div>
+                    </div>
+                        <a class="close" title="Закрыть" href="#close"></a>
+                    </div>
+            </div>
+        }
+    </tr>
+</table>

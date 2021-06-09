@@ -1,0 +1,36 @@
+﻿@model MovieMark.Models.DataModel.MoviesandActors
+@*
+   
+*@
+@{
+}
+ @foreach (var m in Model.Movies) {<h1>@m.Title</h1>  } 
+
+<ul style="display:inline-block">
+    Поставили Лайк:
+    @foreach(var l in Model.Rates)
+    {
+        @if (l.LikeOrDislike == true)
+        {<li>UserID:@l.UserId</li>}
+        }
+</ul>
+ <ul style="display:inline-block; margin-left: 10%; margin-right:10%" >
+     <li>Всего лайков: @Model.Rates.Where(m => m.LikeOrDislike == true).Count() Всего дизлайков: @Model.Rates.Where(m => m.LikeOrDislike == false).Count()</li>
+     <hr />
+     <li>Комментарии:</li>
+     @foreach (var c in Model.Comments)
+     {
+         <li><a>UserID:@c.UserId:</a>@c.Text (@c.WrittenDate)</li>
+     }
+     <hr />
+     <li><form method="post" asp-controller="Home" asp-action="MakeComment" asp-route-id="@ViewBag.Id">Оставить Комментарий:<input type="text" name="CommentText"/><input type="image" src="~/lib/makecomment.png" width="30" height="30" /></form></li>
+ </ul>
+ <ul style="display:inline-block">
+     Поставили Дизлайк:
+     @foreach (var d in Model.Rates)
+     {
+         @if (d.LikeOrDislike == false)
+         {<li>UserID:@d.UserId</li>}
+     }
+ </ul>
+
